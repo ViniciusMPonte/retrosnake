@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Retro Snake</title>
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+  <link rel="shortcut icon" href="snake-favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <h1 class="bigHeading">Retro Snake</h1>
+
+
+  <section class="gameScreen">
+    
+    <div class="newGame"><p class="text">Use as setas do teclado ou o toque na tela para controlar a cobra</p><br>
+      <button class="newGameButton" onclick="startGame()">Novo Jogo</button>
+    </div>
+    
+
+    <div class="pixel" style="left: 30%; top: 40%;"><div class="borderX"></div></div>
+    <div class="pixel" style="left: 25%; top: 40%;"><div class="borderX"></div></div>
+
+
+    <div class="food" style="left: 60%; top: 40%;"></div>
+    
+    <p class="resultScore">Pontuação: 0</p>
+
+  </section>
+
+  <span id="newArrowPressedPlaying"></span>
+  <span id="lastArrowPressedPlaying"></span>
+  <span id="newDivObserver"></span>
+  <span id="score">0</span>
+  <span id="record">0</span>
+
+
+  <footer>
+    <p>2022 Vinícius Ponte</p>
+  </footer>
+  <script src="index.js"></script>
+</body>
+
+</html>
