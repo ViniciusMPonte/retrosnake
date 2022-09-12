@@ -402,12 +402,14 @@ var touchX;
 var touchY;
 
 document.addEventListener('touchstart', function(event) {
+  event.preventDefault();
   var touch = event.changedTouches[0];
   touchX = touch.pageX;
   touchY = touch.pageY;
 }, false);
 
 document.addEventListener('touchmove', function(event) {
+  event.preventDefault();
   var keyPressed;
   var touch = event.changedTouches[0];
   touchDirectionX = touch.pageX - touchX;
