@@ -18,9 +18,6 @@ function newArrowPressedPlayingFilter(keyPressed) {
     if (keyPressed == "ArrowRight" && lastArrowPressedPlaying != "ArrowLeft") {
       newArrowPressedPlaying.innerHTML = keyPressed;
     }
-    if (keyPressed == "s") {
-      newArrowPressedPlaying.innerHTML = keyPressed;
-    }
 
   }
 }
