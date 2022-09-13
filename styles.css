@@ -21,10 +21,6 @@ body {
   font-family: 'Press Start 2P', cursive;
 }
 
-span {
-  display: none;
-}
-
 footer {
   position: fixed;
   bottom: 0;
