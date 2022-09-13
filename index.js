@@ -1,32 +1,31 @@
+var newArrowPressedPlaying;
+var lastArrowPressedPlaying;
 function newArrowPressedPlayingFilter(keyPressed) {
 
-  var newArrowPressedPlaying = document.getElementById("newArrowPressedPlaying");
-  var lastArrowPressedPlaying = document.getElementById("lastArrowPressedPlaying").innerHTML;
   var newGameScreen = document.querySelector(".newGame").classList[1];
 
   if (newGameScreen === "hidden") {
 
     if (keyPressed == "ArrowUp" && lastArrowPressedPlaying != "ArrowDown") {
-      newArrowPressedPlaying.innerHTML = keyPressed;
+      newArrowPressedPlaying = keyPressed;
     }
     if (keyPressed == "ArrowDown" && lastArrowPressedPlaying != "ArrowUp") {
-      newArrowPressedPlaying.innerHTML = keyPressed;
+      newArrowPressedPlaying = keyPressed;
     }
     if (keyPressed == "ArrowLeft" && lastArrowPressedPlaying != "ArrowRight") {
-      newArrowPressedPlaying.innerHTML = keyPressed;
+      newArrowPressedPlaying = keyPressed;
     }
     if (keyPressed == "ArrowRight" && lastArrowPressedPlaying != "ArrowLeft") {
-      newArrowPressedPlaying.innerHTML = keyPressed;
+      newArrowPressedPlaying = keyPressed;
     }
-
   }
 }
 
+var score = 0;
+var record = 0;
 function scoreAndRecord() {
   const pixel = document.querySelectorAll(".pixel");
 
-  const score = document.getElementById("score");
-  const record = document.getElementById("record");
   const resultScore = document.querySelector(".resultScore");
 
   var gameRunning = document.querySelector(".newGame").classList.contains("hidden");
@@ -35,32 +34,30 @@ function scoreAndRecord() {
 
   if (gameRunning) {
 
-    score.innerHTML = pointsScore;
+    score = pointsScore;
 
   } else {
 
-    if (Number(score.innerHTML) > Number(record.innerHTML)) {
-      record.innerHTML = score.innerHTML;
+    if (score > record) {
+      record = score;
     }
 
   }
 
-  if (record.innerHTML == "0") {
-    resultScore.innerHTML = "Pontuação: " + score.innerHTML;
+  if (record == 0) {
+    resultScore.innerHTML = "Pontuação: " + score;
   } else {
-    resultScore.innerHTML = "Redorde: " + record.innerHTML + " | Pontuação: " + score.innerHTML;
+    resultScore.innerHTML = "Redorde: " + record + " | Pontuação: " + score;
   }
 
 }
 
 function startGame() {
   const newGameScreen = document.querySelector(".newGame").classList;
-  const newArrowPressedPlaying = document.getElementById("newArrowPressedPlaying");
-  const score = document.getElementById("score");
 
   newGameScreen.add("hidden");
-  newArrowPressedPlaying.innerHTML = "ArrowRight";
-  score.innerHTML = "0";
+  newArrowPressedPlaying = "ArrowRight";
+  score = 0;
 }
 
 var checkIfGameContinue = {
@@ -144,10 +141,6 @@ function gameOver() {
   const text = document.querySelector(".text");
   const button = document.querySelector("button");
 
-  const newArrowPressedPlaying = document.getElementById("newArrowPressedPlaying");
-
-  const scoreNumber = Number(document.getElementById("score").innerHTML);
-  const recordNumber = Number(document.getElementById("record").innerHTML);
 
 
   for (let i = pixel.length - 1; i > 1; i--) {
@@ -166,7 +159,7 @@ function gameOver() {
 
   newGameScreen.remove("hidden");
 
-  if (scoreNumber > recordNumber) {
+  if (score > record) {
     text.innerHTML = "Parabéns, novo recorde! :D";
   } else {
     text.innerHTML = "Fim de jogo :(";
@@ -174,7 +167,7 @@ function gameOver() {
 
   button.innerHTML = "Jogar de novo?";
 
-  newArrowPressedPlaying.innerHTML = "";
+  newArrowPressedPlaying = "";
 }
 
 var newHeadPositionCalculator = {
@@ -317,6 +310,7 @@ function newFood() {
   }
 }
 
+var newDivObserver;
 function newDiv() {
   var headPositionY = document.querySelector(".pixel").style.top;
   var headPositionX = document.querySelector(".pixel").style.left;
@@ -326,10 +320,9 @@ function newDiv() {
   var gameScreen = document.querySelector(".gameScreen");
   var newDivForNewPixel = document.createElement("div");
   var lastPositionOfPixels = document.querySelector(".food");
-  var newDivObserver = document.getElementById("newDivObserver");
 
   gameScreen.insertBefore(newDivForNewPixel, lastPositionOfPixels);
-  newDivObserver.innerHTML = "turnDivInLastPixel";
+  newDivObserver = "turnDivInLastPixel";
 }
 
 function newPixel() {
@@ -341,11 +334,10 @@ function newPixel() {
   newDiv.style.top = pixel[penultimatePixelNumber].style.top;
   newDiv.style.left = pixel[penultimatePixelNumber].style.left;
   newDiv.innerHTML = pixel[penultimatePixelNumber].innerHTML;
-  document.getElementById("newDivObserver").innerHTML = "";
+  newDivObserver = "";
 }
 
 setInterval(function() {
-  const newArrowPressedPlaying = document.getElementById("newArrowPressedPlaying").innerHTML;
 
   if (newHeadPositionCalculator[newArrowPressedPlaying]) {
 
@@ -362,7 +354,6 @@ setInterval(function() {
 
   }
 
-  var newDivObserver = document.getElementById("newDivObserver").innerHTML
 
   if (newDivObserver == "turnDivInLastPixel") {
     newPixel();
@@ -370,8 +361,7 @@ setInterval(function() {
 
   scoreAndRecord();
 
-  var lastArrowPressedPlaying = document.getElementById("lastArrowPressedPlaying");
-  lastArrowPressedPlaying.innerHTML = newArrowPressedPlaying;
+  lastArrowPressedPlaying = newArrowPressedPlaying;
 
 }, 150);
 
@@ -394,10 +384,8 @@ document.addEventListener("keydown", function(event) {
 
 });
 
-
 var touchX;
 var touchY;
-
 document.addEventListener('touchstart', function(event) {
   event.preventDefault();
   var touch = event.changedTouches[0];
