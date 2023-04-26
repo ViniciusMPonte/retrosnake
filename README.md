@@ -2,6 +2,10 @@
 
 Jogo da cobrinha estilo retro desenvolvido com HTML, CSS e Javascript puro. O site pode ser acessado através do link: https://viniciusmponte.github.io/retrosnake/
 
+## Screenshot
+
+<img src="https://raw.githubusercontent.com/ViniciusMPonte/portfolio/main/images/RetroSnake.png" style="width: 500px; height: auto;">
+
 ## Como Jogar
 
 O objetivo do jogo é controlar a cobra e coletar o maior número possível de alimentos sem colidir com as paredes ou com o próprio corpo da cobra. 
